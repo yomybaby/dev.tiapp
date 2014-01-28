@@ -7,7 +7,7 @@ exports.init = function (logger, config, cli, appc) {
   cli.addHook('build.pre.construct', function (build, finished) {
     var keys = _.keys(build.tiapp.properties).filter(function(e) { return e.match("^cli\.");});
     keys.forEach(function(k) {
-      build[k.replace(/^cli\./)] = build.tiapp.properties[k].value;
+      build[k.replace(/^cli\./,'')] = build.tiapp.properties[k].value;
     });
     finished();
   });
