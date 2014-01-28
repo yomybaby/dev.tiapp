@@ -1,6 +1,6 @@
 {
   "name": "ticonfig",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "hook ti cli config from tiapp.xml",
   "scripts": {
     "install": "node bin/install"
