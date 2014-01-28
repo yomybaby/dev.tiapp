@@ -9,5 +9,6 @@ exports.init = function (logger, config, cli, appc) {
     keys.forEach(function(k) {
       build[k.replace(/^cli\./)] = build.tiapp.properties[k].value;
     });
+    finished();
   });
 };
