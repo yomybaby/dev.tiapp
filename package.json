@@ -1,0 +1,19 @@
+{
+  "name": "ticonfig",
+  "version": "0.1.0",
+  "description": "hook ti cli config from tiapp.xml",
+  "scripts": {
+    "install": "node bin/install"
+  },
+  "keywords": [
+    "titanium",
+    "cli",
+    "appcelerator",
+    "hook"
+  ],
+  "author": "David Bankier <david@yydigital.com> (http://www.yydigital.com)",
+  "license": "MIT",
+  "dependencies": {
+    "underscore": "~1.5.2"
+  }
+}
