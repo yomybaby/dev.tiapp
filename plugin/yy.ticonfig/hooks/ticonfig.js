@@ -1,8 +1,32 @@
-var _ = require("underscore");
+var _ = require("underscore"),
+    ipselector = require("ipselector");
 
 exports.cliVersion = '>=3.2';
  
 exports.init = function (logger, config, cli, appc) {
+  //ip_selector
+  cli.addHook('build.pre.construct', function(build, finished) {
+		if (build.tiapp && build.tiapp.properties) {
+			var ipProperties = _.filter(build.tiapp.properties,function(p,key){
+				return p.value.match(/__IP_ADDRESS__/);
+			});
+			if(ipProperties.length){
+				ipselector.selectOne({
+            family : 'IPv4',
+            internal : false
+          },
+          function(ip) {
+					_.each(ipProperties, function(p, key) {
+						p.value = p.value.replace(/__IP_ADDRESS__/, ip);
+					});
+					finished();
+				});
+			}else{
+				finished();
+			}
+		}
+	});
+
   // credits to @fokkezb for pointing out the build.pre.contruct hook - https://github.com/dbankier/TiShadow/pull/213/
   cli.addHook('build.pre.construct', function (build, finished) {
     if (build.tiapp && build.tiapp.properties) {
