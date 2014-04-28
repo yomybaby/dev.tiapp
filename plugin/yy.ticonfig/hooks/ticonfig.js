@@ -8,7 +8,7 @@ exports.init = function (logger, config, cli, appc) {
   cli.addHook('build.pre.construct', function(build, finished) {
 		if (build.tiapp && build.tiapp.properties) {
 			var ipProperties = _.filter(build.tiapp.properties,function(p,key){
-				return p.value.match(/__IP_ADDRESS__/);
+				return p.value&&p.value.match?p.value.match(/__IP_ADDRESS__/):false;
 			});
 			if(ipProperties.length){
 				ipselector.selectOne({
