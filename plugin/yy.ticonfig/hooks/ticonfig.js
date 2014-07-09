@@ -42,6 +42,12 @@ exports.init = function (logger, config, cli, appc) {
         devKeys.forEach(function(k) {
           build.tiapp.properties[k.replace(/^dev\./, '')].value = build.tiapp.properties[k].value;
         });
+
+        devKeys = Object.keys(build.tiapp).filter(function(e) { return e.match("^dev\.");});
+        devKeys.forEach(function(k) {
+          console.log(k);
+          build.tiapp[k.replace(/^dev\./, '')] = build.tiapp[k];
+        });
       }
     }
     finished();
