@@ -1,6 +1,10 @@
 var _ = require("underscore"),
     ipselector = require("ipselector");
 
+var path = require('path');
+var fs = require('fs');
+var home = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+
 exports.cliVersion = '>=3.2';
  
 exports.init = function (logger, config, cli, appc) {
@@ -11,9 +15,16 @@ exports.init = function (logger, config, cli, appc) {
 				return p.value&&p.value.match?p.value.match(/__IP_ADDRESS__/):false;
 			});
 			if(ipProperties.length){
+        // existing tishadow config?
+        var config;
+        var config_path = path.join(home,'.tishadow.json');
+        if (fs.existsSync(config_path)) {
+          config = require(config_path);
+        }
 				ipselector.selectOne({
             family : 'IPv4',
-            internal : false
+            internal : false,
+            networkInterface : config && config.networkInterface? config.networkInterface:undefined
           },
           function(ip) {
 					_.each(ipProperties, function(p, key) {
