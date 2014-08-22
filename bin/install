@@ -10,9 +10,9 @@ var xspawn = function(cmd,args) {
   return spawn(cmd,args);
 }
 
-var hooks = xspawn('ti', ['config','-a','paths.hooks',path.join( __dirname ,'..', 'plugin','yy.ticonfig','hooks')]);
+var hooks = xspawn('ti', ['config','-a','paths.hooks',path.join( __dirname ,'..', 'plugin','dev.tiapp','hooks')]);
 hooks.stderr.pipe(process.stderr);
 hooks.on("exit", function(code) {
-  code === 0 && console.log("ticonfig hook installed");
+  code === 0 && console.log("dev.tiapp hook installed");
 });
 

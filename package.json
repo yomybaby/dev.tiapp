@@ -1,7 +1,7 @@
 {
-  "name": "ticonfig",
-  "version": "0.2.5",
-  "description": "hook ti cli config from tiapp.xml",
+  "name": "dev.tiapp.xml",
+  "version": "0.0.1",
+  "description": "tiapp.xml properties exchanger for development.\nforked from dbankier/ticonfig (ticonfig author : David Bankier <david@yydigital.com> (http://www.yydigital.com))",
   "scripts": {
     "install": "node bin/install"
   },
@@ -11,7 +11,7 @@
     "appcelerator",
     "hook"
   ],
-  "author": "David Bankier <david@yydigital.com> (http://www.yydigital.com)",
+  "author": "Jong Eun Lee <jong@yostudio.kr>",
   "license": "MIT",
   "dependencies": {
     "underscore": "~1.5.2",
