@@ -28,7 +28,7 @@ exports.init = function (logger, config, cli, appc) {
           },
           function(ip) {
 					_.each(ipProperties, function(p, key) {
-						p.value = p.value.replace(/__IP_ADDRESS__/, ip);
+						p.value = p.value.replace(/__LOCAL_IP__/, ip);
 					});
 					finished();
 				});
