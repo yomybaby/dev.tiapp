@@ -53,4 +53,5 @@ Because some properties have to be set before build. (e.g. facebook app id on iO
 - You will need to understand what can be changed at the `build.pre.contruct` phase.
 - Don't forget close tag with `dev.` prefix. :)
 - If you have a problem or idea, please [make a issue](https://github.com/yomybaby/dev.tiapp/issues).
+
 ## Licence MIT
