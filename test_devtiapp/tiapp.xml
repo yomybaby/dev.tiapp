@@ -16,6 +16,7 @@
 	<property name="ti.ui.defaultunit">dp</property>
 	<property name="server_url">http://www.myserver</property>
   	<property name="dev.server_url">http://192.168.0.10:8080</property>
+  	<!-- <property name="dev.server_url">http://__LOCAL_IP__:8080</property> -->
 	<ios>
 		<plist>
 			<dict>

@@ -16,17 +16,17 @@ Then you can added the following, e.g. to your tiapp.xml file.
 
 ### Change tag value
 ~~~
-  <id>com.licky.www</id>
-  <dev.id>dev.co.licky.www</dev.id>
+<id>com.licky.www</id>
+<dev.id>dev.co.licky.www</dev.id>
 ~~~
 When development deploy(e.g. simulator), Your app id will be replace by value of dev.id.
 
 ~~~  
-  <property name="server_url">http://www.myserver</property>
-  <property name="dev.server_url">http://192.168.0.10:8080</property>
+<property name="server_url">http://www.myserver</property>
+<property name="dev.server_url">http://192.168.0.10:8080</property>
 
-  <property name="ti.facebook.appid">12345xxxxxxxxx</property>
-  <property name="dev.ti.facebook.appid">xxxxxxx56789</property>
+<property name="ti.facebook.appid">12345xxxxxxxxx</property>
+<property name="dev.ti.facebook.appid">xxxxxxx56789</property>
 ~~~
 When development deploy(e.g. simulator), `Ti.App.Properties.getString('server_url')` will return `http://http://192.168.0.10:8080`.  
 
@@ -34,7 +34,15 @@ When development deploy(e.g. simulator), `Ti.App.Properties.getString('server_ur
 `__LOCAL_IP__` in value will be replaced by your local ip address. local ip address detected by [ipselector](https://www.npmjs.org/package/ipselector).
 
 ~~~
-  <dev.property name="server_url">http://__LOCAL_IP__:8080</dev.property>
+<dev.property name="server_url">http://__LOCAL_IP__:8080</dev.property>
+~~~
+
+If you want to set ip of specific network interface, make a config file in your home path.
+`~/.dev.tiapp.json`
+~~~
+{
+    "networkInterface": "en0"
+}
 ~~~
 
 #### Why did I make this?
@@ -44,5 +52,5 @@ Because some properties have to be set before build. (e.g. facebook app id on iO
 ## Note
 - You will need to understand what can be changed at the `build.pre.contruct` phase.
 - Don't forget close tag with `dev.` prefix. :)
-
+- If you have a problem or idea, please [make a issue](https://github.com/yomybaby/dev.tiapp/issues).
 ## Licence MIT

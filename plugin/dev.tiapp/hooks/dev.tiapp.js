@@ -41,17 +41,15 @@ exports.init = function (logger, config, cli, appc) {
   // credits to @fokkezb for pointing out the build.pre.contruct hook - https://github.com/dbankier/TiShadow/pull/213/
   cli.addHook('build.pre.construct', function (build, finished) {
     if (build.tiapp && build.tiapp.properties) {
-      // dev.xxx
       if(build.deployType !== "production"){
-        // console.log(build.tiapp);
-        // build.tiapp['dev.properties'].forEach(function(devProp){
-        //   build.tiapp.properties[devProp.name] = devProp.value;
-        // });
+
+        // property
         var devKeys = Object.keys(build.tiapp['properties']).filter(function(e) { return e.match("^dev\.");});
         devKeys.forEach(function(k) {
           build.tiapp.properties[k.replace(/^dev\./, '')].value = build.tiapp.properties[k].value;
         });
 
+        // tag
         devKeys = Object.keys(build.tiapp).filter(function(e) { return e.match("^dev\.");});
         devKeys.forEach(function(k) {
           build.tiapp[k.replace(/^dev\./, '')] = build.tiapp[k];
