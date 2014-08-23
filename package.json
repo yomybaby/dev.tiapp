@@ -1,5 +1,5 @@
 {
-  "name": "dev.tiapp.xml",
+  "name": "dev.tiapp",
   "version": "0.0.1",
   "description": "tiapp.xml properties exchanger for development.\nforked from dbankier/ticonfig (ticonfig author : David Bankier <david@yydigital.com> (http://www.yydigital.com))",
   "scripts": {

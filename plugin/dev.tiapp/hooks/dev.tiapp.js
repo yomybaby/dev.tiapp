@@ -6,18 +6,18 @@ var fs = require('fs');
 var home = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 
 exports.cliVersion = '>=3.2';
- 
+
 exports.init = function (logger, config, cli, appc) {
   //ip_selector
   cli.addHook('build.pre.construct', function(build, finished) {
 		if (build.tiapp && build.tiapp.properties) {
 			var ipProperties = _.filter(build.tiapp.properties,function(p,key){
-				return p.value&&p.value.match?p.value.match(/__IP_ADDRESS__/):false;
+				return p.value&&p.value.match?p.value.match(/__LOCAL_IP__/):false;
 			});
 			if(ipProperties.length){
         // existing tishadow config?
         var config;
-        var config_path = path.join(home,'.tishadow.json');
+        var config_path = path.join(home,'.dev.tiapp.json');
         if (fs.existsSync(config_path)) {
           config = require(config_path);
         }
@@ -27,9 +27,9 @@ exports.init = function (logger, config, cli, appc) {
             networkInterface : config && config.networkInterface? config.networkInterface:undefined
           },
           function(ip) {
-					_.each(ipProperties, function(p, key) {
-						p.value = p.value.replace(/__LOCAL_IP__/, ip);
-					});
+            _.each(ipProperties, function(p, key) {
+              p.value = p.value.replace(/__LOCAL_IP__/, ip);
+            });
 					finished();
 				});
 			}else{
@@ -43,7 +43,11 @@ exports.init = function (logger, config, cli, appc) {
     if (build.tiapp && build.tiapp.properties) {
       // dev.xxx
       if(build.deployType !== "production"){
-        var devKeys = Object.keys(build.tiapp.properties).filter(function(e) { return e.match("^dev\.");});
+        // console.log(build.tiapp);
+        // build.tiapp['dev.properties'].forEach(function(devProp){
+        //   build.tiapp.properties[devProp.name] = devProp.value;
+        // });
+        var devKeys = Object.keys(build.tiapp['properties']).filter(function(e) { return e.match("^dev\.");});
         devKeys.forEach(function(k) {
           build.tiapp.properties[k.replace(/^dev\./, '')].value = build.tiapp.properties[k].value;
         });
