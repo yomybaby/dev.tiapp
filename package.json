@@ -16,5 +16,9 @@
   "dependencies": {
     "underscore": "~1.5.2",
     "ipselector": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:yomybaby/dev.tiapp.git"
   }
 }
