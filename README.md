@@ -34,7 +34,7 @@ When development deploy(e.g. simulator), `Ti.App.Properties.getString('server_ur
 `__LOCAL_IP__` in value will be replaced by your local ip address. local ip address detected by [ipselector](https://www.npmjs.org/package/ipselector).
 
 ~~~
-<dev.property name="server_url">http://__LOCAL_IP__:8080</dev.property>
+<property name="dev.server_url">http://__LOCAL_IP__:8080</property>
 ~~~
 
 If you want to set ip of specific network interface, make a config file in your home path.
