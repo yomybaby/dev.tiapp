@@ -40,7 +40,6 @@ exports.init = function (logger, config, cli, appc) {
 
   // prefix replacement
   cli.addHook('build.pre.construct', function (build, finished) {
-    console.log(build.cli.argv);
     var force_prefix = build.cli.argv.dev?build.cli.argv.dev.tiapp:undefined;
     var prefixReg = new RegExp("^"+(force_prefix?force_prefix:'dev')+"\.");
 
@@ -60,6 +59,6 @@ exports.init = function (logger, config, cli, appc) {
         });
       }
     }
-    //finished();
+    finished();
   });
 };
