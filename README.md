@@ -1,6 +1,6 @@
 # dev.tiapp
 
-A titanium cli plugin to set a dfferent value of tiapp.xml base on deploy type.  
+A titanium cli plugin to set a dfferent value of tiapp.xml base on deploy type or cli option.
 dev.tiapp is inspired by [dbankier/ticonfig](https://github.com/dbankier/ticonfig). Thanks @dbankier!
 
 ## Installation
@@ -11,8 +11,6 @@ $ [sudo] npm install -g dev.tiapp --unsafe-perm
 `--unsafe-perm` flag is required for hook installation.
 
 ## Usage
-
-Then you can added the following, e.g. to your tiapp.xml file.
 
 ### Change tag value
 ~~~
@@ -45,7 +43,23 @@ If you want to set ip of specific network interface, make a config file in your 
 }
 ~~~
 
-#### Why did I make this?
+### Custom Prefix
+Custom prefix is **not associated with dev/test/prod.**  
+Use '--dev.tiapp' option with Titanium CLI. You can use prefix whatever you want instead of 'dev'.
+~~~
+ti build -p ios --tall --retina --dev.tiapp __dev__
+~~~
+
+in tiapp.xml
+~~~
+<id>test.tiapp</id>
+<__dev__.id>__dev__.test.tiapp</__dev__.id>
+
+<property name="server_url">http://www.myserver</property>
+<property name="__dev__.server_url">http://this.is.custom.prefix</property>
+~~~
+
+## Why did I make this?
 Somebody said that why should I use this instead of [Conditional Code](http://docs.appcelerator.com/titanium/3.0/#!/guide/Alloy_Controllers-section-34636384_AlloyControllers-ConditionalCode) such as `ENV_DEV` condition of Alloy.
 Because some properties have to be set before build. (e.g. facebook app id on iOS)
 
