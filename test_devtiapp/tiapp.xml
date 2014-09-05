@@ -2,6 +2,7 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
 	<id>test.tiapp</id>
 	<dev.id>dev.test.tiapp</dev.id>
+	<__dev__.id>__dev__.test.tiapp</__dev__.id>
 	<name>test_devtiapp</name>
 	<version>1.0</version>
 	<publisher>not specified</publisher>
@@ -16,6 +17,7 @@
 	<property name="ti.ui.defaultunit">dp</property>
 	<property name="server_url">http://www.myserver</property>
   	<property name="dev.server_url">http://192.168.0.10:8080</property>
+	<property name="__dev__.server_url">http://this.is.custom.prefix</property>
   	<!-- <property name="dev.server_url">http://__LOCAL_IP__:8080</property> -->
 	<ios>
 		<plist>

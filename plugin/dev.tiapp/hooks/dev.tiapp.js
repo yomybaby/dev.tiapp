@@ -38,21 +38,24 @@ exports.init = function (logger, config, cli, appc) {
 		}
 	});
 
-  // credits to @fokkezb for pointing out the build.pre.contruct hook - https://github.com/dbankier/TiShadow/pull/213/
+  // prefix replacement
   cli.addHook('build.pre.construct', function (build, finished) {
+    var force_prefix = build.cli.argv.dev?build.cli.argv.dev.tiapp:undefined;
+    var prefixReg = new RegExp("^"+(force_prefix?force_prefix:'dev')+"\.");
+
     if (build.tiapp && build.tiapp.properties) {
-      if(build.deployType !== "production"){
+      if(force_prefix || build.deployType !== "production"){
 
         // property
-        var devKeys = Object.keys(build.tiapp['properties']).filter(function(e) { return e.match("^dev\.");});
+        var devKeys = Object.keys(build.tiapp['properties']).filter(function(e) { return e.match(prefixReg);});
         devKeys.forEach(function(k) {
-          build.tiapp.properties[k.replace(/^dev\./, '')].value = build.tiapp.properties[k].value;
+          build.tiapp.properties[k.replace(prefixReg, '')].value = build.tiapp.properties[k].value;
         });
 
         // tag
-        devKeys = Object.keys(build.tiapp).filter(function(e) { return e.match("^dev\.");});
+        devKeys = Object.keys(build.tiapp).filter(function(e) { return e.match(prefixReg);});
         devKeys.forEach(function(k) {
-          build.tiapp[k.replace(/^dev\./, '')] = build.tiapp[k];
+          build.tiapp[k.replace(prefixReg, '')] = build.tiapp[k];
         });
       }
     }
