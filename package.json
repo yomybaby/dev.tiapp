@@ -1,6 +1,6 @@
 {
   "name": "dev.tiapp",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A titanium cli plugin to set a dfferent value of tiapp.xml base on deploy type.",
   "scripts": {
     "install": "node bin/install"

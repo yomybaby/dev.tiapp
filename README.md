@@ -63,6 +63,11 @@ in tiapp.xml
 Somebody said that why should I use this instead of [Conditional Code](http://docs.appcelerator.com/titanium/3.0/#!/guide/Alloy_Controllers-section-34636384_AlloyControllers-ConditionalCode) such as `ENV_DEV` condition of Alloy.
 Because some properties have to be set before build. (e.g. facebook app id on iOS)
 
+## Change Log
+
+### v0.0.3
+- Custom Prefix
+
 ## Note
 - You will need to understand what can be changed at the `build.pre.contruct` phase.
 - Don't forget close tag with `dev.` prefix. :)
