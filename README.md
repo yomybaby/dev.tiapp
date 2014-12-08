@@ -59,8 +59,8 @@ in tiapp.xml
 <property name="__dev__.server_url">http://this.is.custom.prefix</property>
 ~~~
 
-#### Custom Prefix doesn't work when cli.failOnWrongSDK is false
-If cli.failOnWrongSDK is true and SDK version of project doesn't match Titanium CLI defautl version, Titanium CLI change a command. This make unofficial options to be deleted.
+#### Known Issue
+- [#2](yomybaby/dev.tiapp/issues/2). : If cli.failOnWrongSDK is true and SDK version of project doesn't match Titanium CLI defautl version, Titanium CLI change a command. This make unofficial options to be deleted.
 Set cli.failOnWrongSDK is true. If you want to build anoter version, user `--sdk` option.
 
 `ti build -p ios --sdk 3.4.0.GA`
