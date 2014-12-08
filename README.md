@@ -59,6 +59,12 @@ in tiapp.xml
 <property name="__dev__.server_url">http://this.is.custom.prefix</property>
 ~~~
 
+#### Custom Prefix doesn't work when cli.failOnWrongSDK is false
+If cli.failOnWrongSDK is true and SDK version of project doesn't match Titanium CLI defautl version, Titanium CLI change a command. This make unofficial options to be deleted.
+Set cli.failOnWrongSDK is true. If you want to build anoter version, user `--sdk` option.
+
+`ti build -p ios --sdk 3.4.0.GA`
+
 ## Why did I make this?
 Somebody said that why should I use this instead of [Conditional Code](http://docs.appcelerator.com/titanium/3.0/#!/guide/Alloy_Controllers-section-34636384_AlloyControllers-ConditionalCode) such as `ENV_DEV` condition of Alloy.
 Because some properties have to be set before build. (e.g. facebook app id on iOS)
