@@ -45,13 +45,13 @@ exports.init = function (logger, config, cli, appc) {
 
     if (build.tiapp && build.tiapp.properties) {
       if(force_prefix || build.deployType !== "production"){
-
+    
         // property
         var devKeys = Object.keys(build.tiapp['properties']).filter(function(e) { return e.match(prefixReg);});
         devKeys.forEach(function(k) {
           build.tiapp.properties[k.replace(prefixReg, '')].value = build.tiapp.properties[k].value;
         });
-
+    
         // tag
         devKeys = Object.keys(build.tiapp).filter(function(e) { return e.match(prefixReg);});
         devKeys.forEach(function(k) {
@@ -59,6 +59,19 @@ exports.init = function (logger, config, cli, appc) {
         });
       }
     }
+    
+    if(build.tiapp.properties['ti.facebook.appid']){
+      build.tiapp.ios = build.tiapp.ios || {plist:{}};
+      
+      build.tiapp.ios.plist = _.extend(build.tiapp.ios.plist, {"CFBundleURLTypes": [{
+    			"CFBundleURLName": build.tiapp.id,
+    			"CFBundleURLSchemes": ["fb" + build.tiapp.properties['ti.facebook.appid'].value]
+    		}],
+    		"FacebookAppID": build.tiapp.properties['ti.facebook.appid'].value,
+    		"FacebookDisplayName": build.tiapp.name
+      });
+    }
+    
     finished();
   });
 };
